@@ -1,0 +1,30 @@
+<html>
+	<body>
+		<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.min.js"></script>
+		<div ng-app="myApp" ng-controller="cntrl">
+		<form>
+		Clicker ID: <input type="text" ng-model="id" name="id">
+		Parent Name: <input type="text" ng-model="parentName" name="parentName">
+		Student Name: <input type="text" ng-model="childName" name="childName">
+		Drop Off: <input type="text" ng-model="dropOff" name="dropOff">
+		Pick Up: <input type="text" ng-model="pickUp" name="pickUp">
+		<input type="button" value="submit" ng-click="insertdata()">
+		</form>
+		</div>
+	<script>
+		var app=angular.module('myApp',[]);
+		app.controller('cntrl',function($scope,$http){
+		
+			$scope.insertdata=function(){
+				$http.post("insert.php",{'id':$scope.id, 'parentName':$scope.parentName, 'childName':$scope.childName, 'dropOff':$scope.dropOff, 'pickUp':$scope.pickUp})
+				.success(function(){
+				
+					$scope.msg="Data Inserted";
+				
+				})
+			}
+		
+		});
+	</script>
+	</body>
+</html>
